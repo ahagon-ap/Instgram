@@ -13,7 +13,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             self.present(loginViewController!, animated: true, completion: nil)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // タブアイコンの色
@@ -26,7 +26,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         // UITabBarControllerDelegateプロトコルのメソッドをこのクラスで処理する。
         self.delegate = self
     }
-
+    
     // タブバーのアイコンがタップされた時に呼ばれるdelegateメソッドを処理する。
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is ImageSelectViewController {
@@ -39,5 +39,5 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             return true
         }
     }
-
+    
 }

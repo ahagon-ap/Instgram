@@ -20,20 +20,20 @@ class PostData: NSObject {
     var comments: [CommentData] = []
     var likes: [String] = []
     var isLiked: Bool = false
-
+    
     init(document: QueryDocumentSnapshot) {
         self.id = document.documentID
-
+        
         let postDic = document.data()
-
+        
         if let name = postDic["name"] as? String {
             self.name = name
         }
-
+        
         if let caption = postDic["caption"] as? String {
             self.caption = caption
         }
-
+        
         if let timestamp = postDic["date"] as? Timestamp {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -43,11 +43,11 @@ class PostData: NSObject {
         if let comments = postDic["comments"] as? [[String: String]] {
             self.comments = comments.map { CommentData(comment: $0["comment"] ?? "", name: $0["name"] ?? "") }
         }
-
+        
         if let likes = postDic["likes"] as? [String] {
             self.likes = likes
         }
-
+        
         if let myid = Auth.auth().currentUser?.uid {
             // likesの配列の中にmyidが含まれているかチェックすることで、自分がいいねを押しているかを判断
             if self.likes.firstIndex(of: myid) != nil {
@@ -56,7 +56,7 @@ class PostData: NSObject {
             }
         }
     }
-
+    
     override var description: String {
         return "PostData: name=\(name); caption=\(caption); date=\(date); comments=\(comments.map { "\($0.name): \($0.comment)" }); likes=\(likes.count); id=\(id);"
     }

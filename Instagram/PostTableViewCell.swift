@@ -1,10 +1,3 @@
-//
-//  PostTableViewCell.swift
-//  Instagram
-//
-//  Created by WEBSYSTEM-MAC41 on 2024/07/19.
-//
-
 import UIKit
 import FirebaseStorageUI
 

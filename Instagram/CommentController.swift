@@ -1,10 +1,3 @@
-//
-//  CommentController.swift
-//  Instagram
-//
-//  Created by WEBSYSTEM-MAC41 on 2024/07/22.
-//
-
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
@@ -14,7 +7,7 @@ class CommentController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     
     var postData: PostData? // 投稿データを受け取るためのプロパティ
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 画面タップでキーボードを閉じる設定
@@ -49,7 +42,6 @@ class CommentController: UIViewController {
     
     @IBAction func postComment(_ sender: Any) {
         guard let commentText = commentTextField.text, !commentText.isEmpty else {
-            // コメントが空の場合の処理
             return
         }
         
@@ -59,14 +51,13 @@ class CommentController: UIViewController {
         
         // 現在のユーザーの名前を取得
         if let userName = Auth.auth().currentUser?.displayName {
-            // Firestoreにコメントを追加する処理
             addComment(to: postData, comment: commentText, name: userName)
-            self.dismiss(animated: true, completion: nil) // モーダルを閉じる
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func caoncel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil) // モーダルを閉じる
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
